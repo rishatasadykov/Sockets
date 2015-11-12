@@ -22,15 +22,15 @@ public class ChatClient extends JFrame {
     private final ActionListener sendAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {            	
-            	DataOutputStream out = new DataOutputStream(sock.getOutputStream());             
-                out.writeUTF(inputText.getText());
-                out.flush();
+        	try {            	
+        		DataOutputStream out = new DataOutputStream(sock.getOutputStream());             
+        		out.writeUTF(inputText.getText());
+        		out.flush();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
             inputText.setText("");
-		}
+        }
     };
 
     public void init(String name) {
@@ -120,7 +120,7 @@ public class ChatClient extends JFrame {
 			sock = socket;
 			out = new DataOutputStream(sock.getOutputStream());
 			out.writeUTF(name);
-	        out.flush();
+			out.flush();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}		

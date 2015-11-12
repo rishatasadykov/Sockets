@@ -72,27 +72,26 @@ public class ChatServer {
 	public void sockAcc(int portNumber) {
 		ChatServer cs = new ChatServer();
 		try (
-                ServerSocket serverSocket =
-                        new ServerSocket(portNumber);
-        ) {
-        	System.out.println("Started Chat Server");
+				ServerSocket serverSocket = new ServerSocket(portNumber);
+				) {
+			System.out.println("Started Chat Server");
         	while (true) {
-				Socket client = null;
-				while (client == null) {
-					client = serverSocket.accept();
-				}
-				DataInputStream in = new DataInputStream(client.getInputStream());
-				cs.runThread(new User(client, in.readUTF()));
-			}     	
-        } catch (IOException e) {
-            System.out.println("Exception caught when trying to listen on port "
+        		Socket client = null;
+        		while (client == null) {
+        			client = serverSocket.accept();
+        		}
+        		DataInputStream in = new DataInputStream(client.getInputStream());
+        		cs.runThread(new User(client, in.readUTF()));
+        	}
+		} catch (IOException e) {
+			System.out.println("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");
-            System.out.println(e.getMessage());
-        }
+			System.out.println(e.getMessage());
+		}
 	}
 	
     public static void main(String... args) {
-        int portNumber = 7777;
+    	int portNumber = 7777;
         ChatServer cs = new ChatServer();
         cs.sockAcc(portNumber);
     }
