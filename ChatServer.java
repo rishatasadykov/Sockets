@@ -76,13 +76,10 @@ public class ChatServer {
 				) {
 			System.out.println("Started Chat Server");
 			while (true) {
-				Socket client = null;
-				while (client == null) {
-        			client = serverSocket.accept();
-        		}
-        		DataInputStream in = new DataInputStream(client.getInputStream());
-        		cs.runThread(new User(client, in.readUTF()));
-			}			
+				Socket client = serverSocket.accept();
+				DataInputStream in = new DataInputStream(client.getInputStream());
+				cs.runThread(new User(client, in.readUTF()));
+			}
 		} catch (IOException e) {
 			System.out.println("Exception caught when trying to listen on port "
                     + portNumber + " or listening for a connection");
